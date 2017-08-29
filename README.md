@@ -2,6 +2,10 @@
 
 An alternative to Om and Reagent reactive UI. Based on Mithril.js with emphasis on simplicity.
 
+Lein / Boot dependency
+
+`[hammer "0.1"]`
+
 An example program.
 
 ```clojure
