@@ -1,7 +1,5 @@
 (ns hammer.ui
-  (:require-macros [cljs.core.async.macros :refer [go go-loop]])
-  (:require [cljsjs.mithril]
-            [cljs.core.async :as async]))
+  (:require [cljsjs.mithril]))
 
 (defprotocol IComponentBeforeRemove (on-before-remove [this vnode]))
 (defprotocol IComponentBeforeUpdate (on-before-update [this vnode old]))
@@ -306,16 +304,13 @@
 (defn clj->m-element [e]
   (-> e clj->m-element* clj->js))
 
-(defn mount! [root & coll]
-  (go-loop [elements coll]
-    (when-first [e elements]
-      (.mount js/m
-              root
-              (if-not (satisfies? IComponentView e)
-                e
-                (clj->m-element e)))
-      (recur
-       (rest elements)))))
+(defn mount! [root element]
+  (let [e element]
+    (.mount js/m
+            root
+            (if-not (satisfies? IComponentView e)
+              e
+              (clj->m-element e)))))
 
 (defrecord Component [state overrides]
   IComponentBeforeRemove

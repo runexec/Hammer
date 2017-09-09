@@ -1,4 +1,4 @@
-(defproject hammer "0.1"
+(defproject hammer "0.1.1"
   :description "UI alternative to Om and Reagent"
   :url "https://github.com/runexec/hammer"
   :license {:name "Eclipse Public License"
